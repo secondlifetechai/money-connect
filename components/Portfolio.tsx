@@ -32,7 +32,7 @@ export function Portfolio() {
   };
 
   return (
-    <Card>
+    <Card className='border border-gray-700'>
       <CardHeader>
         <CardTitle>Your Portfolio</CardTitle>
         <CardDescription>Current positions and performance</CardDescription>

@@ -92,21 +92,21 @@ export function ChartContent({
   };
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer width="100%" height="100%" className={'text-gray-200'}>
       <ComposedChart data={chartData}>
         <CartesianGrid
           strokeDasharray="3 3"
-          stroke="hsl(var(--muted-foreground))"
+          stroke="white"
           opacity={0.2}
         />
         <XAxis
           dataKey="time"
-          stroke="hsl(var(--muted-foreground))"
+          stroke="white"
           opacity={0.5}
           tick={{ fontSize: 12 }}
         />
         <YAxis
-          stroke="hsl(var(--muted-foreground))"
+          stroke="white"
           opacity={0.5}
           domain={showPercentages ? [80, 120] : ['auto', 'auto']}
           tick={{ fontSize: 12 }}

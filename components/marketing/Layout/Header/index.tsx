@@ -1,71 +1,48 @@
 "use client";
+
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { headerData } from "../Header/Navigation/menuData";
 import Logo from "./Logo";
-import Image from "next/image";
 import HeaderLink from "../Header/Navigation/HeaderLink";
 import MobileHeaderLink from "../Header/Navigation/MobileHeaderLink";
-import { useTheme } from "next-themes";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { useStore } from "@/lib/store";
+import { AuthModal } from "@/components/AuthModal";
 
 const Header: React.FC = () => {
-  const pathUrl = usePathname();
-  const { theme, setTheme } = useTheme();
 
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
-  const [isSignInOpen, setIsSignInOpen] = useState(false);
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
 
-  const navbarRef = useRef<HTMLDivElement>(null);
-  const signInRef = useRef<HTMLDivElement>(null);
-  const signUpRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+  const { user, setUser } = useStore();
+  const [showAuthModal, setShowAuthModal] = useState(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setUser(null);
+  };
 
   const handleScroll = () => {
     setSticky(window.scrollY >= 80);
   };
 
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      signInRef.current &&
-      !signInRef.current.contains(event.target as Node)
-    ) {
-      setIsSignInOpen(false);
-    }
-    if (
-      signUpRef.current &&
-      !signUpRef.current.contains(event.target as Node)
-    ) {
-      setIsSignUpOpen(false);
-    }
-    if (
-      mobileMenuRef.current &&
-      !mobileMenuRef.current.contains(event.target as Node) &&
-      navbarOpen
-    ) {
-      setNavbarOpen(false);
-    }
-  };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-    document.addEventListener("mousedown", handleClickOutside);
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [navbarOpen, isSignInOpen, isSignUpOpen]);
+  }, [navbarOpen]);
 
   useEffect(() => {
-    if (isSignInOpen || isSignUpOpen || navbarOpen) {
+    if (navbarOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
     }
-  }, [isSignInOpen, isSignUpOpen, navbarOpen]);
+  }, [navbarOpen]);
 
   return (
     <header
@@ -107,64 +84,28 @@ const Header: React.FC = () => {
                 <path d="M16.6111 15.855C17.591 15.1394 18.3151 14.1979 18.7723 13.1623C16.4824 13.4065 14.1342 12.4631 12.6795 10.4711C11.2248 8.47905 11.0409 5.95516 11.9705 3.84818C10.8449 3.9685 9.72768 4.37162 8.74781 5.08719C5.7759 7.25747 5.12529 11.4308 7.29558 14.4028C9.46586 17.3747 13.6392 18.0253 16.6111 15.855Z" />
               </svg>
             </button> */}
-            <Link
-              href="#"
-              className="hidden lg:block bg-transparent text-primary border hover:bg-primary border-primary hover:text-darkmode px-4 py-2 rounded-lg"
-              onClick={() => {
-                setIsSignInOpen(true);
-              }}
-            >
-              Sign In
-            </Link>
-            {isSignInOpen && (
-              <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
-                <div
-                  ref={signInRef}
-                  className="relative mx-auto w-full max-w-md overflow-hidden rounded-lg px-8 pt-14 pb-8 text-center bg-dark_grey bg-opacity-90 backdrop-blur-md"
-                >
-                  <button
-                    onClick={() => setIsSignInOpen(false)}
-                    className="absolute top-0 right-0 mr-8 mt-8 dark:invert"
-                    aria-label="Close Sign In Modal"
-                  >
-                    <Icon
-                      icon="tabler:currency-xrp"
-                      className="text-white hover:text-primary text-24 inline-block me-2"
-                    />
-                  </button>
-                  
-                </div>
-              </div>
+
+            {user ? (
+              <>
+                <span className="text-sm text-muted-foreground">
+                  {user.email}
+                </span>
+                <Link href="#" className="hidden lg:block bg-transparent text-primary border hover:bg-primary border-primary hover:text-darkmode px-4 py-2 rounded-lg" onClick={handleLogout}>
+                  Logout
+                </Link>
+              </>
+              ) : (
+              <Link
+                href="#"
+                className="hidden lg:block bg-transparent text-primary border hover:bg-primary border-primary hover:text-darkmode px-4 py-2 rounded-lg"
+                onClick={() => {
+                  setShowAuthModal(true);
+                }}
+              >
+                Sign In
+              </Link>
             )}
-            <Link
-              href="#"
-              className="hidden lg:block bg-primary text-darkmode hover:bg-transparent hover:text-primary border border-primary px-4 py-2 rounded-lg"
-              onClick={() => {
-                setIsSignUpOpen(true);
-              }}
-            >
-              Sign Up
-            </Link>
-            {isSignUpOpen && (
-              <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
-                <div
-                  ref={signUpRef}
-                  className="relative mx-auto w-full max-w-md overflow-hidden rounded-lg bg-dark_grey bg-opacity-90 backdrop-blur-md px-8 pt-14 pb-8 text-center"
-                >
-                  <button
-                    onClick={() => setIsSignUpOpen(false)}
-                    className="absolute top-0 right-0 mr-8 mt-8 dark:invert"
-                    aria-label="Close Sign Up Modal"
-                  >
-                    <Icon
-                      icon="tabler:currency-xrp"
-                      className="text-white hover:text-primary text-24 inline-block me-2"
-                    />
-                  </button>
-                  
-                </div>
-              </div>
-            )}
+            
             <button
               onClick={() => setNavbarOpen(!navbarOpen)}
               className="block lg:hidden p-2 rounded-lg"
@@ -176,7 +117,7 @@ const Header: React.FC = () => {
             </button>
           </div>
         </div>
-        {navbarOpen && (
+        {showAuthModal && (
           <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-40" />
         )}
         <div
@@ -202,30 +143,36 @@ const Header: React.FC = () => {
               <MobileHeaderLink key={index} item={item} />
             ))}
             <div className="mt-4 flex flex-col space-y-4 w-full">
-              <Link
-                href="#"
-                className="bg-transparent border border-primary text-primary px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white"
-                onClick={() => {
-                  setIsSignInOpen(true);
-                  setNavbarOpen(false);
-                }}
-              >
-                Sign In
-              </Link>
-              <Link
-                href="#"
-                className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-                onClick={() => {
-                  setIsSignUpOpen(true);
-                  setNavbarOpen(false);
-                }}
-              >
-                Sign Up
-              </Link>
+
+            {user ? (
+              <>
+                <span className="text-sm text-muted-foreground">
+                  {user.email}
+                </span>
+                <Link href="#" className="bg-transparent border border-primary text-primary px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white" onClick={handleLogout}>
+                  Logout
+                </Link>
+              </>
+              ) : (
+                <Link
+                  href="#"
+                  className="bg-transparent border border-primary text-primary px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white"
+                  onClick={() => {
+                    setShowAuthModal(true);
+                  }}
+                >
+                  Sign In
+                </Link>
+              )}
             </div>
           </nav>
         </div>
       </div>
+
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+      />
     </header>
   );
 };

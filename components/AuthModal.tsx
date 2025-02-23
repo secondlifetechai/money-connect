@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/components/ui/use-toast';
+import { useRouter } from 'next/navigation';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -25,6 +26,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [isLogin, setIsLogin] = useState(true);
   const { setUser } = useStore();
   const { toast } = useToast();
+  const router = useRouter();
 
   const {
     register,
@@ -59,6 +61,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
       });
       reset();
       onClose();
+      return router.push('/trade')
     } catch (error) {
       toast({
         title: 'Error',
@@ -70,7 +73,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent>
+      <DialogContent className='border border-gray-700'>
         <DialogHeader>
           <DialogTitle>{isLogin ? 'Login' : 'Register'}</DialogTitle>
         </DialogHeader>
@@ -82,6 +85,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
               type="email"
               {...register('email')}
               placeholder="Enter your email"
+              className='border border-gray-600'
             />
             {errors.email && (
               <p className="text-sm text-red-500">{errors.email.message}</p>
@@ -94,6 +98,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
               type="password"
               {...register('password')}
               placeholder="Enter your password"
+              className='border border-gray-600'
             />
             {errors.password && (
               <p className="text-sm text-red-500">{errors.password.message}</p>

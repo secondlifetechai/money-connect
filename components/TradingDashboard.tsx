@@ -38,7 +38,7 @@ export default function TradingDashboard() {
 
   return (
     <>
-      <Card>
+      <Card className='border border-gray-700'>
         <CardHeader>
           <CardTitle>Trading Dashboard</CardTitle>
           <CardDescription>Balance: ${user.balance.toFixed(2)}</CardDescription>
@@ -48,7 +48,7 @@ export default function TradingDashboard() {
             {stocks.map((stock) => (
               <div
                 key={stock.symbol}
-                className="flex items-center justify-between p-4 border rounded-lg"
+                className="flex items-center justify-between p-4 border border-gray-700 rounded-lg"
               >
                 <div>
                   <h3 className="font-semibold">{stock.symbol}</h3>
@@ -60,12 +60,14 @@ export default function TradingDashboard() {
                   <Button
                     variant="outline"
                     onClick={() => handleTrade(stock, 'buy')}
+                    className='border border-gray-700'
                   >
                     Buy
                   </Button>
                   <Button
                     variant="outline"
                     onClick={() => handleTrade(stock, 'sell')}
+                    className='border border-gray-700'
                   >
                     Sell
                   </Button>

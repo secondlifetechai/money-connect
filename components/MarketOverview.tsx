@@ -26,10 +26,10 @@ export default function MarketOverview() {
   }, [stocks, updateStocks]);
 
   return (
-    <div className="rounded-lg border bg-card">
+    <div className="rounded-lg border bg-card border-gray-700">
       <Table>
         <TableHeader>
-          <TableRow>
+          <TableRow className='border border-gray-700'>
             <TableHead>Symbol</TableHead>
             <TableHead>Name</TableHead>
             <TableHead className="text-right">Price</TableHead>
@@ -39,7 +39,7 @@ export default function MarketOverview() {
         </TableHeader>
         <TableBody>
           {stocks.map((stock) => (
-            <TableRow key={stock.symbol}>
+            <TableRow key={stock.symbol} className='border border-gray-700'>
               <TableCell className="font-medium">{stock.symbol}</TableCell>
               <TableCell>{stock.name}</TableCell>
               <TableCell className="text-right">${stock.price.toFixed(2)}</TableCell>

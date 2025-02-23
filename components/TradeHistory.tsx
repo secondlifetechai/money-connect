@@ -13,7 +13,7 @@ export function TradeHistory() {
   const { trades } = useStore();
 
   return (
-    <Card>
+    <Card className='border border-gray-700'>
       <CardHeader>
         <CardTitle>Trade History</CardTitle>
         <CardDescription>Your recent trading activity</CardDescription>
@@ -23,7 +23,7 @@ export function TradeHistory() {
           {trades.map((trade, index) => (
             <div
               key={index}
-              className="flex items-center justify-between p-4 border rounded-lg"
+              className="flex items-center justify-between p-4 border border-gray-700 rounded-lg"
             >
               <div>
                 <h3 className="font-semibold">

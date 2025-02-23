@@ -66,6 +66,13 @@ const config: Config = {
         charcoalGray: "#666C78",
         deepSlate: "#282C36",
         slateGray: "#2F3543",
+        chart: {
+          '1': 'hsl(var(--chart-1))',
+          '2': 'hsl(var(--chart-2))',
+          '3': 'hsl(var(--chart-3))',
+          '4': 'hsl(var(--chart-4))',
+          '5': 'hsl(var(--chart-5))',
+        },
       },
       fontSize: {
         86: [

@@ -15,7 +15,7 @@ const Portfolio = () => {
             className="lg:-ml-32"
           >
             <Image
-              src="/images/portfolio/img-portfolio.png"
+              src="/images/portfolio/w1.png"
               alt="Crypto Portfolio"
               width={780}
               height={700}
@@ -28,15 +28,15 @@ const Portfolio = () => {
             transition={{ duration: 0.6 }}
           >
             <p className="sm:text-28 text-18 text-muted mb-4">
-              Cryptocurrency <span className="text-primary">Portfolio</span>
+              It so easy to <span className="text-primary">use</span>
             </p>
             <h2 className="text-white sm:text-40 text-30 mb-4 font-medium">
-              Create your crypto portfolio today with Cryp
-              <span className="text-primary">Go</span>!
+              Speed, accuracy, and security - 
+              <span className="text-primary"> all in one place</span>!
             </h2>
             <p className="text-muted text-opacity-60 text-18">
-              Coinbase has a variety of features that make it the best
-              <br className="md:block hidden" /> place to start trading.
+              Money doesn't wait. Why should you? Trade in real time with Money Connect and take
+              <br className="md:block hidden" /> full control of your profits.
             </p>
 
             <table className="w-full sm:w-[80%]">

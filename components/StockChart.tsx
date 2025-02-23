@@ -51,7 +51,7 @@ export function StockChart() {
   }, [stocks, selectedStocks]);
 
   return (
-    <Card>
+    <Card className='border border-gray-700'>
       <CardHeader className="space-y-3 pb-2">
         <div className="flex items-center justify-between">
           <CardTitle className="text-base font-normal">Price Chart</CardTitle>

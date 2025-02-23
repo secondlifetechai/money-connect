@@ -103,7 +103,7 @@ export function TradeModal({ stock, type, onClose }: TradeModalProps) {
 
   return (
     <Dialog open={true} onOpenChange={onClose}>
-      <DialogContent>
+      <DialogContent className='border border-gray-700 bg-[#000510]'>
         <DialogHeader>
           <DialogTitle>
             {type === 'buy' ? 'Buy' : 'Sell'} {stock.symbol}
@@ -118,6 +118,7 @@ export function TradeModal({ stock, type, onClose }: TradeModalProps) {
               min="1"
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
+              className='border border-gray-600'
             />
           </div>
           <div className="text-sm">
@@ -125,10 +126,10 @@ export function TradeModal({ stock, type, onClose }: TradeModalProps) {
           </div>
         </div>
         <DialogFooter>
-          <Button variant="outline" onClick={onClose}>
+          <Button variant="outline" onClick={onClose} className='border border-gray-600'>
             Cancel
           </Button>
-          <Button onClick={handleTrade}>
+          <Button onClick={handleTrade} className='border border-gray-600'>
             {type === 'buy' ? 'Buy' : 'Sell'}
           </Button>
         </DialogFooter>

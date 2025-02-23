@@ -1,10 +1,7 @@
 import { title } from "process";
 
 export const footerlabels: { label: string; herf: string }[] = [
-  { label: "Terms", herf: "#" },
-  { label: "Disclosures", herf: "#" },
-  { label: "Disclosures", herf: "#" },
-  { label: "Latest News", herf: "#" },
+  { label: "Account", herf: "/trade" },
 ];
 
 export const pricedeta: {
@@ -89,15 +86,15 @@ export const pricedeta: {
 export const portfolioData: { image: string; title: string }[] = [
   {
     image: "/images/portfolio/icon-wallet.svg",
-    title: "Manage your portfolio",
+    title: "Simple for beginners",
   },
   {
     image: "/images/portfolio/icon-vault.svg",
-    title: "Vault protection",
+    title: "Powerful for experts",
   },
   {
     image: "/images/portfolio/icon-mobileapp.svg",
-    title: "Mobile apps",
+    title: "Perfect for everyone",
   },
 ];
 
@@ -123,13 +120,13 @@ export const perksData: {
   {
     icon: "/images/perks/icon-community.svg",
     title: "Community",
-    text: "Join the conversations on our worldwide OKEx communities",
+    text: "Join the conversations on our worldwide communities",
     space: "lg:mt-14",
   },
   {
     icon: "/images/perks/icon-academy.svg",
     title: "Academy",
-    text: "Learn blockchain and<br /> crypto for free.",
+    text: "Learn Trading and<br /> start for free.",
     space: "lg:mt-4",
   },
 ];

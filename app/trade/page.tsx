@@ -14,7 +14,7 @@ export default function TradePage() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                     <div className="lg:col-span-8">
                         <Suspense fallback={<div>Loading market data...</div>}>
-                        <MarketOverview />
+                            <MarketOverview />
                         </Suspense>
                         <div className="mt-8">
                         <Suspense fallback={<div>Loading chart...</div>}>
@@ -24,7 +24,7 @@ export default function TradePage() {
                     </div>
                     <div className="lg:col-span-4">
                         <Suspense fallback={<div>Loading trading dashboard...</div>}>
-                        <TradingDashboard />
+                            <TradingDashboard />
                         </Suspense>
                     </div>
                 </div>

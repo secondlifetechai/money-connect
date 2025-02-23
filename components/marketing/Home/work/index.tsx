@@ -22,15 +22,15 @@ const Work = () => {
   const services = [
     {
       icon: "/images/icons/icon-consulting.svg",
-      text: "Blockchain Consulting",
+      text: "Live Market Data",
     },
     {
       icon: "/images/icons/icon-blockchain.svg",
-      text: "Blockchain Solutions",
+      text: "All-in-One Dashboard",
     },
     {
       icon: "/images/icons/icon-Services.svg",
-      text: "Custom Development",
+      text: "Ultra-Fast Execution",
     },
   ];
 
@@ -43,10 +43,10 @@ const Work = () => {
             className="lg:col-span-7 col-span-12"
           >
             <p className="sm:text-28 text-18 text-white">
-              Work with <span className="text-primary">us</span>
+              Fast, simple, <span className="text-primary">and profitable!</span>
             </p>
             <h2 className="sm:text-40 text-30 text-white lg:w-full md:w-70% font-medium">
-              Successfully launch your blockchain project.
+              Trade in real time with Money Connect and take full control of your profits.
             </h2>
             <div className="grid md:grid-cols-2 gap-7 mt-11">
               {services.map((service, index) => (
@@ -67,7 +67,7 @@ const Work = () => {
           <motion.div {...TopAnimation} className="lg:col-span-5 col-span-12">
             <div className="2xl:-mr-40 mt-9 flex justify-center">
               <Image
-                src="/images/work/img-work-with-us.png"
+                src="/images/work/b3.webp"
                 alt="image"
                 width={600}
                 height={425}
