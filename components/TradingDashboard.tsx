@@ -27,7 +27,7 @@ export default function TradingDashboard() {
 
   if (!user) {
     return (
-      <Card>
+      <Card className='border border-gray-700'>
         <CardHeader>
           <CardTitle>Trading Dashboard</CardTitle>
           <CardDescription>Please log in to start trading</CardDescription>
